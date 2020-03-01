@@ -2,7 +2,6 @@
 
 namespace Thebikramlama\Worldlink;
 
-// use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 
 class Worldlink {
@@ -27,6 +26,7 @@ class Worldlink {
 		if ( $response == null ) return 'Please initiate with a query.';
 
 		$data = $response->data->{$field} ?? null;
+		if ( $data === 0 ) return 0;
 		if ( $data == null ) return 'Invalid field requested';
 
 		return $data;
