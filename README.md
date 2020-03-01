@@ -65,6 +65,27 @@ $worldlink->getField('expires_at_unix'); // Unix timestamp for exipry
 $worldlink->getField('payment_options'); // Other Payment options (in array)
 ```
 
+## Caching
+
+The package caches the responses for 60 minutes in default.
+
+If you would like to change the caching time, make sure you have published `worldlink.php` config file
+
+```bash
+php artisan vendor:publish --provider="Thebikramlama\Worldlink\WorldlinkServiceProvider"
+```
+You can find the `worldlink.php` config file under `config/worldlink.php` inside your laravel project.
+
+You can edit the file as per your need.
+```php
+/*
+  Set cache expiration here
+  Set the cache period in minutes
+  Set 0 for no cache
+*/
+$cache_expiration => 60,
+```
+
 ## Credits
 - [Bikram Lama](https://github.com/TheBikramLama)
 
