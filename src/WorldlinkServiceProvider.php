@@ -6,11 +6,16 @@ use Illuminate\Support\ServiceProvider;
 
 class WorldlinkServiceProvider extends ServiceProvider {
 
-	public function boot() {
+	public function register() {
+		$this->mergeConfigFrom(
+            __DIR__.'/config/worldlink.php', 'worldlink'
+        );
 	}
 
-	public function register() {
-		
+	public function boot() {
+		$this->publishes([
+            __DIR__.'/config/worldlink.php' => config_path('worldlink.php'),
+        ]);
 	}
 
 }

@@ -13,11 +13,19 @@ class Worldlink {
 	}
 
 	public function query( $username ) {
-		$client = new Client();
-		$response = $client->get( $this->apiUrl.$username, [
-			'http_errors' => false
-		]);
-		$this->responseBody = $response->getBody();
+		// Adding Cache to the request
+		$this->responseBody = cache()->remember(
+			"worldlink.response.{$username}",
+			now()->addMinutes( config('worldlink.cache_expiration') ),
+			function() {
+				$client = new Client();
+				$response = $client->get( $this->apiUrl.$username, [
+					'http_errors' => false
+				]);
+				return $response->getBody();
+			}
+		);
+
 		return $this->responseBody;
 	}
 
