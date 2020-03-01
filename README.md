@@ -83,7 +83,7 @@ You can edit the file as per your need.
   Set the cache period in minutes
   Set 0 for no cache
 */
-$cache_expiration => 60,
+'cache_expiration' => 60,
 ```
 
 ## Credits
