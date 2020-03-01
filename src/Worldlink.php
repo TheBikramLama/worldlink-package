@@ -17,7 +17,7 @@ class Worldlink {
 		$this->responseBody = cache()->remember(
 			"worldlink.response.{$username}",
 			now()->addMinutes( config('worldlink.cache_expiration') ),
-			function() {
+			function() use( $username ) {
 				$client = new Client();
 				$response = $client->get( $this->apiUrl.$username, [
 					'http_errors' => false
