@@ -22,7 +22,8 @@ class Worldlink {
 				$response = $client->get( $this->apiUrl.$username, [
 					'http_errors' => false
 				]);
-				return $response->getBody();
+				$responseBody = json_encode(json_decode($response->getBody()));
+				return $responseBody;
 			}
 		);
 
